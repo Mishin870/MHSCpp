@@ -1,11 +1,13 @@
-#include <iostream>
-#include "mhscript/objects/ICommand.h"
-#include "mhscript/entities/Object.h"
-#include "mhscript/entities/ObjectInt.h"
+
+#include "mhscript/commands/ICommand.h"
+#include "mhscript/commands/HelloCommand.h"
 
 int main() {
-	Object* object = new ObjectInt();
-	printf("%d\n", object->getType());
+	ICommand* command;
+	command = new HelloCommand();
+	
+	Object* result = command->execute(nullptr);
+	result->trace();
 	
 	return 0;
 }

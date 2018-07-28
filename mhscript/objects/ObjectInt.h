@@ -10,7 +10,11 @@
 
 class ObjectInt : public Object {
 	public:
-		ObjectType getType();
+		explicit ObjectInt(int value);
+		
+		ObjectType getType() override;
+		void trace() override;
+		int value;
 };
 
 

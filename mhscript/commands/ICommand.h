@@ -6,12 +6,12 @@
 #define MHSCPP_ICOMMAND_H
 
 
-#include "../entities/Object.h"
+#include "../objects/Object.h"
 #include "../engine/Engine.h"
 
 class ICommand {
 	public:
-		virtual Object execute(Engine* engine) = 0;
+		virtual Object* execute(Engine* engine) = 0;
 };
 
 

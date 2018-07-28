@@ -11,6 +11,7 @@
 class Object {
 	public:
 		virtual ObjectType getType() = 0;
+		virtual void trace() = 0;
 };
 
 
