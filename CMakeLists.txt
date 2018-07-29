@@ -21,4 +21,4 @@ add_executable(MHSCpp
 		mhscript/commands/LocalFunction.cpp
 		mhscript/commands/LocalFunction.h
 		mhscript/stream/Stream.h
-		mhscript/commands/ComamndType.h mhscript/stream/DummyStream.cpp mhscript/stream/DummyStream.h mhscript/stream/FileStream.cpp mhscript/stream/FileStream.h)
+		mhscript/commands/ComamndType.h mhscript/stream/DummyStream.cpp mhscript/stream/DummyStream.h mhscript/stream/FileStream.cpp mhscript/stream/FileStream.h mhscript/commands/defs/CmdLogicCompound.cpp mhscript/commands/defs/CmdLogicCompound.h mhscript/commands/LexemKind.h mhscript/commands/ScriptUtils.cpp mhscript/commands/ScriptUtils.h)

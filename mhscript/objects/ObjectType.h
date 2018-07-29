@@ -7,7 +7,7 @@
 
 
 enum ObjectType : unsigned char {
-	INT, BOOL
+	OT_INT, OT_BOOL
 };
 
 

@@ -6,7 +6,7 @@
 #include "ObjectBool.h"
 
 ObjectType ObjectBool::getType() {
-	return BOOL;
+	return OT_BOOL;
 }
 
 ObjectBool::ObjectBool(bool value) {

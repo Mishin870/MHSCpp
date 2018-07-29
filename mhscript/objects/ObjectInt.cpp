@@ -6,7 +6,7 @@
 #include "ObjectInt.h"
 
 ObjectType ObjectInt::getType() {
-	return INT;
+	return OT_INT;
 }
 
 ObjectInt::ObjectInt(int value) {
