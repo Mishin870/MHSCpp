@@ -2,8 +2,8 @@
 // Created by Mishin870 on 30.07.2018.
 //
 
-#ifndef MHSCPP_CMDLOGICCOMPOUND_H
-#define MHSCPP_CMDLOGICCOMPOUND_H
+#ifndef MHSCPP_CmdLogic_H
+#define MHSCPP_CmdLogic_H
 
 
 #include "../../stream/Stream.h"
@@ -13,18 +13,18 @@
 #include "../ICommand.h"
 #include "../LexemKind.h"
 
-class CmdLogicCompound : public ICommand {
+class CmdLogic : public ICommand {
 	public:
-		explicit CmdLogicCompound(Stream* stream);
-		~CmdLogicCompound();
+		explicit CmdLogic(Stream* stream);
+		~CmdLogic();
 		
 		Object* execute(Engine* engine) override;
 		CommandType getType() override;
 	private:
-		unsigned int blocksCount;
-		ICommand** blocks;
+		ICommand* left;
+		ICommand* right;
 		LexemKind operation;
 };
 
 
-#endif //MHSCPP_CMDLOGICCOMPOUND_H
+#endif //MHSCPP_CmdLogic_H
