@@ -8,10 +8,12 @@
 
 #include "../objects/Object.h"
 #include "../engine/Engine.h"
+#include "ComamndType.h"
 
 class ICommand {
 	public:
 		virtual Object* execute(Engine* engine) = 0;
+		virtual CommandType getType() = 0;
 };
 
 

@@ -1,0 +1,38 @@
+//
+// Created by Mishin870 on 29.07.2018.
+//
+
+#ifndef MHSCPP_COMAMNDTYPE_H
+#define MHSCPP_COMAMNDTYPE_H
+
+enum CommandType : unsigned char {
+	CT_LOGIC_COMPOUND = 0,
+	CT_LOGIC = 1,
+	CT_RETURN = 2,
+	CT_IF = 3,
+	CT_ELSE = 4,
+	CT_ELSE_IF = 5,
+	CT_FOR = 6,
+	CT_WHILE = 7,
+	CT_SCRIPT_BLOCK = 8,
+	CT_INDEX = 9,
+	CT_EMPTY = 10,
+	CT_ASSIGN = 11,
+	CT_ASSIGN_INDEX = 12,
+	CT_UNARY = 13,
+	CT_MATH = 14,
+	CT_NUMERIC = 15,
+	CT_STRING = 16,
+	CT_STRING_VARIABLED = 17,
+	CT_BOOL = 18,
+	CT_VARIABLE = 19,
+	CT_DOT_VARIABLE = 20,
+	CT_GLOBAL_FUNCTION = 21,
+	CT_DOT_FUNCTION = 22
+};
+
+#endif //MHSCPP_COMAMNDTYPE_H
+
+//
+// Created by Mishin870 on 28.07.2018.
+//

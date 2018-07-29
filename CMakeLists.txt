@@ -7,4 +7,18 @@ add_executable(MHSCpp
 		main.cpp
 		mhscript/commands/ICommand.h
 		mhscript/objects/Object.h
-		mhscript/objects/ObjectType.h mhscript/objects/ObjectInt.cpp mhscript/objects/ObjectInt.h mhscript/engine/Engine.cpp mhscript/engine/Engine.h mhscript/commands/HelloCommand.cpp mhscript/commands/HelloCommand.h mhscript/objects/ObjectBool.cpp mhscript/objects/ObjectBool.h)
+		mhscript/objects/ObjectType.h
+		mhscript/objects/ObjectInt.cpp
+		mhscript/objects/ObjectInt.h
+		mhscript/engine/Engine.cpp
+		mhscript/engine/Engine.h
+		mhscript/objects/ObjectBool.cpp
+		mhscript/objects/ObjectBool.h
+		mhscript/engine/ScriptLoader.cpp
+		mhscript/engine/ScriptLoader.h
+		mhscript/commands/ScriptBlock.cpp
+		mhscript/commands/ScriptBlock.h
+		mhscript/commands/LocalFunction.cpp
+		mhscript/commands/LocalFunction.h
+		mhscript/stream/Stream.h
+		mhscript/commands/ComamndType.h mhscript/stream/DummyStream.cpp mhscript/stream/DummyStream.h mhscript/stream/FileStream.cpp mhscript/stream/FileStream.h)
