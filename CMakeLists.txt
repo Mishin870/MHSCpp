@@ -33,4 +33,7 @@ add_executable(MHSCpp
 		mhscript/commands/LexemKind.h
 		mhscript/commands/ScriptUtils.cpp
 		mhscript/commands/ScriptUtils.h
-		)
+		mhscript/commands/ScriptException.cpp
+		mhscript/commands/ScriptException.h
+		mhscript/commands/ScriptExceptionType.h
+		mhscript/commands/defs/CmdReturn.cpp mhscript/commands/defs/CmdReturn.h mhscript/commands/defs/CmdElse.cpp mhscript/commands/defs/CmdElse.h)

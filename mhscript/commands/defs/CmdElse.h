@@ -2,8 +2,9 @@
 // Created by Mishin870 on 30.07.2018.
 //
 
-#ifndef MHSCPP_CmdLogic_H
-#define MHSCPP_CmdLogic_H
+#ifndef MHSCPP_CMDELSE_H
+#define MHSCPP_CMDELSE_H
+
 
 #include "../../stream/Stream.h"
 #include "../../engine/Engine.h"
@@ -12,18 +13,16 @@
 #include "../ICommand.h"
 #include "../LexemKind.h"
 
-class CmdLogic : public ICommand {
+class CmdElse : public ICommand {
 	public:
-		explicit CmdLogic(Stream* stream);
-		~CmdLogic();
+		explicit CmdElse(Stream* stream);
+		~CmdElse();
 		
 		Object* execute(Engine* engine) override;
 		CommandType getType() override;
 	private:
-		ICommand* left;
-		ICommand* right;
-		LexemKind operation;
+		ICommand* command;
 };
 
 
-#endif //MHSCPP_CmdLogic_H
+#endif //MHSCPP_CMDELSE_H
