@@ -2,7 +2,6 @@
 // Created by Mishin870 on 31.07.2018.
 //
 
-#include <stdexcept>
 #include "CmdElseIf.h"
 #include "../../engine/ScriptLoader.h"
 #include "../ScriptUtils.h"
@@ -23,8 +22,12 @@ Object *CmdElseIf::execute(Engine *engine) {
 	if (getBoolOrCrash(condition)) {
 		Object* object = this->command->execute(engine);
 		delete object;
+		delete condition;
+		return new ObjectBool(true);
+	} else {
+		delete condition;
+		return new ObjectBool(false);
 	}
-	delete condition;
 }
 
 CommandType CmdElseIf::getType() {
