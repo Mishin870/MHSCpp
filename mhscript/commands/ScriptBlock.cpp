@@ -4,6 +4,7 @@
 
 #include "ScriptBlock.h"
 #include "../engine/ScriptLoader.h"
+#include "ScriptUtils.h"
 
 ScriptBlock::ScriptBlock(unsigned int commandsCount, ICommand** commands, unsigned int functionsCount, LocalFunction** functions) {
 	this->commands = commands;
@@ -33,8 +34,9 @@ Object *ScriptBlock::execute(Engine *engine) {
 	
 	unsigned int i;
 	for (i = 0; i < this->commandsCount; i++) {
-		this->commands[i]->execute(engine);
+		executeVoid(this->commands[i], engine);
 	}
+	return nullptr;
 }
 
 CommandType ScriptBlock::getType() {

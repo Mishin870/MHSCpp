@@ -4,6 +4,7 @@
 
 #include "CmdElse.h"
 #include "../../engine/ScriptLoader.h"
+#include "../ScriptUtils.h"
 
 CmdElse::CmdElse(Stream *stream) {
 	this->command = loadCommand(stream);
@@ -14,8 +15,7 @@ CmdElse::~CmdElse() {
 }
 
 Object *CmdElse::execute(Engine *engine) {
-	Object* object = this->command->execute(engine);
-	delete object;
+	executeVoid(this->command, engine);
 	return nullptr;
 }
 

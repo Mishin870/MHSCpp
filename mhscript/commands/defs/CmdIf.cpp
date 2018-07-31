@@ -25,37 +25,25 @@ CmdIf::~CmdIf() {
 }
 
 Object *CmdIf::execute(Engine *engine) {
-	Object* object = condition->execute(engine);
-	Object* object2;
-	
-	if (getBoolOrCrash(object)) {
-		object2 = command->execute(engine);
-		delete object2;
+	if (executeBool(this->condition, engine)) {
+		executeVoid(this->command, engine);
 	} else {
 		unsigned int i;
 		for (i = 0; i < this->elseStatementsCount; i++) {
 			CommandType type = this->elseStatements[i]->getType();
 			switch (type) {
 				case CT_ELSE:
-					object2 = this->elseStatements[i]->execute(engine);
-					delete object2;
-					delete object;
+					executeVoid(this->elseStatements[i], engine);
 					return nullptr;
 				case CT_ELSE_IF:
-					object2 = this->elseStatements[i]->execute(engine);
-					if (getBoolOrCrash(object2)) {
-						delete object;
-						delete object2;
+					if (executeBool(this->elseStatements[i], engine)) {
 						return nullptr;
-					} else {
-						delete object2;
 					}
 				default:
 					throw std::runtime_error("CmdIf::execute => unknown else statement type!");
 			}
 		}
 	}
-	delete object;
 	return nullptr;
 }
 

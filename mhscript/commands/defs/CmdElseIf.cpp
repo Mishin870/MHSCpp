@@ -18,14 +18,10 @@ CmdElseIf::~CmdElseIf() {
 }
 
 Object *CmdElseIf::execute(Engine *engine) {
-	Object* condition = this->condition->execute(engine);
-	if (getBoolOrCrash(condition)) {
-		Object* object = this->command->execute(engine);
-		delete object;
-		delete condition;
+	if (executeBool(this->condition, engine)) {
+		executeVoid(this->command, engine);
 		return new ObjectBool(true);
 	} else {
-		delete condition;
 		return new ObjectBool(false);
 	}
 }

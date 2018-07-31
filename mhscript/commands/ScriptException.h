@@ -13,6 +13,7 @@
 class ScriptException : public std::runtime_error {
 	public:
 		ScriptException(char const* message, ScriptExceptionType type, Object* data) throw();
+		~ScriptException();
 		char const* what() const throw() override;
 	private:
 		ScriptExceptionType type;

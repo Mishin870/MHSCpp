@@ -10,6 +10,10 @@ ScriptException::ScriptException(char const* message, ScriptExceptionType type, 
 	this->data = data;
 }
 
+ScriptException::~ScriptException() {
+	delete this->data;
+}
+
 char const *ScriptException::what() const {
 	return runtime_error::what();
 }

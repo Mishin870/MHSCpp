@@ -23,23 +23,16 @@ CmdLogicCompound::~CmdLogicCompound() {
 
 Object *CmdLogicCompound::execute(Engine *engine) {
 	unsigned int i;
-	Object* object;
 	if (this->operation == AND) {
 		for (i = 0; i < this->blocksCount; i++) {
-			object = this->blocks[i]->execute(engine);
-			bool value = getBool(object);
-			delete object;
-			if (!value) {
+			if (!executeBool(this->blocks[i], engine)) {
 				return new ObjectBool(false);
 			}
 		}
 		return new ObjectBool(true);
 	} else if (this->operation == OR) {
 		for (i = 0; i < this->blocksCount; i++) {
-			object = this->blocks[i]->execute(engine);
-			bool value = getBool(object);
-			delete object;
-			if (value) {
+			if (executeBool(this->blocks[i], engine)) {
 				return new ObjectBool(true);
 			}
 		}
