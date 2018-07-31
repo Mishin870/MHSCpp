@@ -17,6 +17,7 @@ bool getBool(Object* object);
 int getInt(Object* object);
 
 bool executeBool(ICommand* command, Engine* engine);
+int executeInt(ICommand* command, Engine* engine);
 void executeVoid(ICommand* command, Engine* engine);
 Variable* executeVariable(ICommand* command, Engine* engine);
 

@@ -87,6 +87,15 @@ bool executeBool(ICommand* command, Engine* engine) {
 	return result;
 }
 
+int executeInt(ICommand* command, Engine* engine) {
+	Object* tmp = command->execute(engine);
+	int result = getIntOrCrash(tmp);
+	if (tmp->getType() != OT_VARIABLE) {
+		delete tmp;
+	}
+	return result;
+}
+
 void executeVoid(ICommand* command, Engine* engine) {
 	Object* tmp = command->execute(engine);
 	if (tmp->getType() != OT_VARIABLE) {
