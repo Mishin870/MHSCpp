@@ -12,6 +12,7 @@
 class ObjectBool : public Object {
 	public:
 		explicit ObjectBool(bool value);
+		~ObjectBool();
 		
 		ObjectType getType() override;
 		void trace() override;

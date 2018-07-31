@@ -18,3 +18,7 @@ void Variable::trace() {
 	this->value->trace();
 	printf("']");
 }
+
+Variable::~Variable() {
+	delete this->value;
+}

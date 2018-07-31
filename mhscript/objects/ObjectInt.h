@@ -11,6 +11,7 @@
 class ObjectInt : public Object {
 	public:
 		explicit ObjectInt(int value);
+		~ObjectInt();
 		
 		ObjectType getType() override;
 		void trace() override;

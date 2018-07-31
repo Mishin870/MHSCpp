@@ -11,6 +11,7 @@
 class Variable : public Object {
 	public:
 		explicit Variable(Object* value);
+		~Variable();
 		
 		ObjectType getType() override;
 		void trace() override;

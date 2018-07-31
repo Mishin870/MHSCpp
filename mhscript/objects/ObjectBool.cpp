@@ -16,3 +16,5 @@ ObjectBool::ObjectBool(bool value) {
 void ObjectBool::trace() {
 	printf("[ObjectBool value=%d]", this->value);
 }
+
+ObjectBool::~ObjectBool() {}

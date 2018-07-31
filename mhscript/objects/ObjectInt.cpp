@@ -16,3 +16,5 @@ ObjectInt::ObjectInt(int value) {
 void ObjectInt::trace() {
 	printf("[ObjectInt value=%d]", this->value);
 }
+
+ObjectInt::~ObjectInt() {}
