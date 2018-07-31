@@ -51,4 +51,4 @@ add_executable(MHSCpp
 		mhscript/commands/defs/CmdEmpty.cpp
 		mhscript/commands/defs/CmdEmpty.h
 		mhscript/engine/Variable.cpp
-		mhscript/engine/Variable.h)
+		mhscript/engine/Variable.h mhscript/commands/defs/CmdAssign.cpp mhscript/commands/defs/CmdAssign.h)

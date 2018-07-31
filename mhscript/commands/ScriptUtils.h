@@ -8,7 +8,9 @@
 
 #include "../objects/Object.h"
 #include "ICommand.h"
+#include "../engine/Variable.h"
 
+Variable* getVariableOrCrash(Object* object);
 bool getBoolOrCrash(Object* object);
 int getIntOrCrash(Object* object);
 bool getBool(Object* object);
