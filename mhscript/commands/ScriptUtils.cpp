@@ -90,6 +90,14 @@ void executeVoid(ICommand* command, Engine* engine) {
 	delete tmp;
 }
 
+Variable* executeVariable(ICommand* command, Engine* engine) {
+	CommandType type = command->getType();
+	if (type != CT_VARIABLE) {
+		throw std::runtime_error("ScriptUtils::executeVariable => unknown variable type!");
+	}
+	return getVariableOrCrash(command->execute(engine));
+}
+
 Variable* getVariableOrCrash(Object* object) {
 	if (object == nullptr) {
 		throw std::runtime_error("ScriptUtils::getVariableOrCrash => object is null!");
@@ -99,5 +107,33 @@ Variable* getVariableOrCrash(Object* object) {
 		return dynamic_cast<Variable *>(object);
 	} else {
 		throw std::runtime_error("ScriptUtils::getVariableOrCrash => wrong type!");
+	}
+}
+
+void setIntVariable(Variable* variable, int value) {
+	if (value == nullptr) {
+		throw std::runtime_error("ScriptUtils::setIntVariable => variable is null!");
+	}
+	Object* object = variable->value;
+	ObjectType type = object->getType();
+	if (type == OT_INT) {
+		auto *objectInt = dynamic_cast<ObjectInt *>(object);
+		objectInt->value = value;
+	} else {
+		throw std::runtime_error("ScriptUtils::setIntVariable => wrong type!");
+	}
+}
+
+void setBoolVariable(Variable* variable, bool value) {
+	if (value == nullptr) {
+		throw std::runtime_error("ScriptUtils::setBoolVariable => variable is null!");
+	}
+	Object* object = variable->value;
+	ObjectType type = object->getType();
+	if (type == OT_BOOL) {
+		auto *objectBool = dynamic_cast<ObjectBool *>(object);
+		objectBool->value = value;
+	} else {
+		throw std::runtime_error("ScriptUtils::setBoolVariable => wrong type!");
 	}
 }

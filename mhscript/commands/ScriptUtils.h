@@ -18,6 +18,10 @@ int getInt(Object* object);
 
 bool executeBool(ICommand* command, Engine* engine);
 void executeVoid(ICommand* command, Engine* engine);
+Variable* executeVariable(ICommand* command, Engine* engine);
+
+void setIntVariable(Variable* variable, int value);
+void setBoolVariable(Variable* variable, bool value);
 
 
 #endif //MHSCPP_SCRIPTUTILS_H
