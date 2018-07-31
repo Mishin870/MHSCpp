@@ -51,4 +51,4 @@ add_executable(MHSCpp
 		mhscript/commands/defs/CmdEmpty.cpp
 		mhscript/commands/defs/CmdEmpty.h
 		mhscript/engine/Variable.cpp
-		mhscript/engine/Variable.h mhscript/commands/defs/CmdAssign.cpp mhscript/commands/defs/CmdAssign.h mhscript/commands/defs/CmdUnary.cpp mhscript/commands/defs/CmdUnary.h)
+		mhscript/engine/Variable.h mhscript/commands/defs/CmdAssign.cpp mhscript/commands/defs/CmdAssign.h mhscript/commands/defs/CmdUnary.cpp mhscript/commands/defs/CmdUnary.h mhscript/commands/defs/CmdNumeric.cpp mhscript/commands/defs/CmdNumeric.h)
