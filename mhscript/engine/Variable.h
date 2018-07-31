@@ -8,6 +8,11 @@
 
 #include "../objects/Object.h"
 
+/**
+ * Объект-переменная, которая хранит в себе другой объект.
+ * Служит лишь для того, чтобы изменять чужую ссылку на объект удалённо,
+ * а также менять тип объекта (например, ObjectInt => ObjectBool).
+ */
 class Variable : public Object {
 	public:
 		explicit Variable(Object* value);

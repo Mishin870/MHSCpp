@@ -5,7 +5,10 @@
 #ifndef MHSCPP_STREAM_H
 #define MHSCPP_STREAM_H
 
-
+/**
+ * Описание потока, с которым умеет оперировать движок.
+ * См. также: FileStream
+ */
 class Stream {
 	public:
 		virtual unsigned int readInt() = 0;
