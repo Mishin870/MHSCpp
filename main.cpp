@@ -22,10 +22,8 @@ int main() {
 	Engine* engine = new Engine();
 	//ICommand* script = new ScriptBlock(stream);
 	ScriptBlock* script = engine->loadCurrentScript(stream);
-	
 	script->execute(engine);
 	
-	delete script;
 	delete engine;
 	delete stream;
 	return 0;

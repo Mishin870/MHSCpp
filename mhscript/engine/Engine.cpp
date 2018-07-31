@@ -7,11 +7,18 @@
 #include "ScriptLoader.h"
 
 Engine::Engine() {
+	this->variables = nullptr;
 	this->variablesCount = 0;
+	this->localFunctions = nullptr;
 	this->localFunctionsCount = 0;
+	this->currentScript = nullptr;
 }
 
-ScriptBlock* Engine::loadCurrentScript(Stream* stream) {
+ScriptBlock* Engine::loadCurrentScript(Stream *stream) {
+	if (this->currentScript != nullptr) {
+		dispose();
+	}
+	
 	bool optimized = stream->readByte() == 1;
 	if (!optimized) {
 		throw std::runtime_error("Script is not optimized for the client interpreter!");
@@ -49,23 +56,27 @@ ScriptBlock* Engine::loadCurrentScript(Stream* stream) {
 	if (script->getType() != CT_SCRIPT_BLOCK) {
 		throw std::runtime_error("Main script block must have type CT_SCRIPT_BLOCK!");
 	}
-	return dynamic_cast<ScriptBlock*>(script);
+	this->currentScript = dynamic_cast<ScriptBlock*>(script);
+	return this->currentScript;
 }
 
 void Engine::dispose() {
+	//Script also deletes local functions
+	delete this->currentScript;
+	
 	unsigned int i;
 	for (i = 0; i < this->variablesCount; i++) {
 		delete this->variables[i];
 	}
-	for (i = 0; i < this->localFunctionsCount; i++) {
-		delete this->localFunctions[i];
-	}
 	delete[] this->variables;
+	
 	delete[] this->localFunctions;
 }
 
 Engine::~Engine() {
-	dispose();
+	if (this->currentScript != nullptr) {
+		dispose();
+	}
 }
 
 Variable *Engine::getVariable(unsigned int variableName) {

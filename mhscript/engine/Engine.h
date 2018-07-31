@@ -20,8 +20,9 @@ class Engine {
 		
 		Variable* getVariable(unsigned int variableName);
 		void setLocalFunction(unsigned int localFunctionName, LocalFunction* localFunction);
-		ScriptBlock* loadCurrentScript(Stream* stream);
+		ScriptBlock* loadCurrentScript(Stream *stream);
 	private:
+		ScriptBlock* currentScript;
 		void dispose();
 		
 		unsigned int variablesCount;

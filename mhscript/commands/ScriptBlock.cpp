@@ -29,10 +29,12 @@ ScriptBlock::~ScriptBlock() {
 	}
 	delete[] this->commands;
 	
-	for (i = 0; i < this->functionsCount; i++) {
-		delete this->functions[i];
+	if (this->isRoot) {
+		for (i = 0; i < this->functionsCount; i++) {
+			delete this->functions[i];
+		}
+		delete[] this->functions;
 	}
-	delete[] this->functions;
 }
 
 Object *ScriptBlock::execute(Engine *engine) {
