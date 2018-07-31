@@ -36,9 +36,14 @@ ScriptBlock::~ScriptBlock() {
 }
 
 Object *ScriptBlock::execute(Engine *engine) {
-	//TODO: add local functions to engine
-	
 	unsigned int i;
+	if (this->isRoot) {
+		for (i = 0; i < this->functionsCount; i++) {
+			LocalFunction* function = this->functions[i];
+			engine->setLocalFunction(function->getName(), function);
+		}
+	}
+	
 	for (i = 0; i < this->commandsCount; i++) {
 		executeVoid(this->commands[i], engine);
 	}

@@ -7,16 +7,25 @@
 
 
 #include "Variable.h"
+#include "../stream/Stream.h"
+#include "../commands/LocalFunction.h"
 
 class Engine {
 	public:
-		Engine(unsigned int variablesCount);
+		Engine();
 		~Engine();
 		
 		Variable* getVariable(unsigned int variableName);
+		void setLocalFunction(unsigned int localFunctionName, LocalFunction* localFunction);
+		ScriptBlock* loadCurrentScript(Stream* stream);
 	private:
+		void dispose();
+		
 		unsigned int variablesCount;
 		Variable** variables;
+		
+		unsigned int localFunctionsCount;
+		LocalFunction** localFunctions;
 };
 
 

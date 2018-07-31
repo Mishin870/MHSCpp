@@ -16,6 +16,7 @@ class LocalFunction {
 		explicit LocalFunction(Stream* stream);
 		~LocalFunction();
 		Object* execute(Engine* engine);
+		unsigned int getName();
 		
 	private:
 		unsigned int name;

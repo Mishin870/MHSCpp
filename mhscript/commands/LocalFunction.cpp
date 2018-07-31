@@ -41,3 +41,7 @@ Object *LocalFunction::execute(Engine *engine) {
 	}
 	return nullptr;
 }
+
+unsigned int LocalFunction::getName() {
+	return this->name;
+}
