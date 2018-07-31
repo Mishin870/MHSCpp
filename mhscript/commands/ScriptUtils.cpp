@@ -98,7 +98,7 @@ int executeInt(ICommand* command, Engine* engine) {
 
 void executeVoid(ICommand* command, Engine* engine) {
 	Object* tmp = command->execute(engine);
-	if (tmp->getType() != OT_VARIABLE) {
+	if (tmp != nullptr && tmp->getType() != OT_VARIABLE) {
 		delete tmp;
 	}
 }

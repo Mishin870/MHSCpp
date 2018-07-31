@@ -26,6 +26,7 @@ void Engine::loadCurrentScript(Stream *stream) {
 	
 	unsigned int count, len, i;
 	count = stream->readInt();
+	this->globalFunctionsCount = count;
 	for (i = 0; i < count; i++) {
 		len = stream->readInt();
 		stream->skip(len);
@@ -43,6 +44,7 @@ void Engine::loadCurrentScript(Stream *stream) {
 		stream->skip(len);
 	}
 	
+	this->globalFunctions = new IGlobalFunction*[this->globalFunctionsCount];
 	this->localFunctions = new LocalFunction*[this->localFunctionsCount];
 	this->variables = new Variable*[this->variablesCount];
 	for (i = 0; i < this->variablesCount; i++) {
@@ -73,6 +75,11 @@ void Engine::dispose() {
 	}
 	delete[] this->variables;
 	
+	for (i = 0; i < this->globalFunctionsCount; i++) {
+		delete this->globalFunctions[i];
+	}
+	delete[] this->globalFunctions;
+	
 	delete[] this->localFunctions;
 }
 
@@ -87,15 +94,15 @@ Variable *Engine::getVariable(unsigned int variableName) {
 }
 
 void Engine::setLocalFunction(unsigned int localFunctionName, LocalFunction* localFunction) {
-	if (localFunctionName >= this->localFunctionsCount) {
+	if (localFunctionName < 0 || localFunctionName >= this->localFunctionsCount) {
 		throw std::runtime_error("Engine::setLocalFunction => out of range!");
 	}
 	this->localFunctions[localFunctionName] = localFunction;
 }
 
 void Engine::setGlobalFunction(unsigned int globalFunctionName, IGlobalFunction *globalFunction) {
-	if (globalFunctionName >= this->localFunctionsCount) {
-		throw std::runtime_error("Engine::setLocalFunction => out of range!");
+	if (globalFunctionName < 0 || globalFunctionName >= this->globalFunctionsCount) {
+		throw std::runtime_error("Engine::setGlobalFunction => out of range!");
 	}
 	this->globalFunctions[globalFunctionName] = globalFunction;
 }
@@ -105,5 +112,8 @@ Object* Engine::executeLocalFunction(unsigned int functionName, Object** args, u
 }
 
 Object* Engine::executeGlobalFunction(unsigned int functionName, Object** args, unsigned int argc) {
+	if (functionName < 0 || functionName >= this->localFunctionsCount) {
+		throw std::runtime_error("Engine::executeGlobalFunction => out of range!");
+	}
 	this->globalFunctions[functionName]->execute(args, argc);
 }

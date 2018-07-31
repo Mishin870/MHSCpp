@@ -20,8 +20,8 @@ CmdLogic::~CmdLogic() {
 }
 
 Object *CmdLogic::execute(Engine *engine) {
-	Object* object1 = left->execute(engine);
-	Object* object2 = right->execute(engine);
+	Object* object1 = getPureObject(left->execute(engine));
+	Object* object2 = getPureObject(right->execute(engine));
 	ObjectType type1 = object1->getType();
 	ObjectType type2 = object2->getType();
 	
