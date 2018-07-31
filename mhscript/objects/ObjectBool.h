@@ -15,7 +15,7 @@ class ObjectBool : public Object {
 		~ObjectBool();
 		
 		ObjectType getType() override;
-		void trace() override;
+		void dump(std::ostringstream &stream) override;
 		bool value;
 };
 

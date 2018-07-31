@@ -19,7 +19,7 @@ class Variable : public Object {
 		~Variable();
 		
 		ObjectType getType() override;
-		void trace() override;
+		void dump(std::ostringstream &stream) override;
 		Object* value;
 };
 

@@ -6,6 +6,7 @@
 #define MHSCPP_OBJECT_H
 
 
+#include <sstream>
 #include "ObjectType.h"
 
 /**
@@ -15,7 +16,7 @@
 class Object {
 	public:
 		virtual ObjectType getType() = 0;
-		virtual void trace() = 0;
+		virtual void dump(std::ostringstream &stream) = 0;
 };
 
 

@@ -14,7 +14,7 @@ class ObjectInt : public Object {
 		~ObjectInt();
 		
 		ObjectType getType() override;
-		void trace() override;
+		void dump(std::ostringstream &stream) override;
 		int value;
 };
 

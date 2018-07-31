@@ -13,10 +13,10 @@ Variable::Variable(Object* value) {
 	this->value = value;
 }
 
-void Variable::trace() {
-	printf("[Variable value='");
-	this->value->trace();
-	printf("']");
+void Variable::dump(std::ostringstream &stream) {
+	stream << "Variable[";
+	this->value->dump(stream);
+	stream << "]";
 }
 
 Variable::~Variable() {

@@ -13,8 +13,8 @@ ObjectInt::ObjectInt(int value) {
 	this->value = value;
 }
 
-void ObjectInt::trace() {
-	printf("[ObjectInt value=%d]", this->value);
+void ObjectInt::dump(std::ostringstream &stream) {
+	stream << "Int(" << this->value << ")" << std::endl;
 }
 
 ObjectInt::~ObjectInt() {}

@@ -8,8 +8,11 @@ class TestFunction : public IGlobalFunction {
 	public:
 		Object* execute(Object** args, unsigned int argc) {
 			unsigned int i;
+			std::ostringstream stream;
 			for (i = 0; i < argc; i++) {
-				std::cout << args[i] << " ";
+				args[i]->dump(stream);
+				std::cout << stream.str() << " ";
+				stream.clear();
 			}
 			std::cout << std::endl;
 		}
@@ -20,13 +23,13 @@ int main() {
 	//command = new HelloCommand();
 	
 	Object* result = command->execute(nullptr);
-	result->trace();*/
+	result->dump();*/
 	
 	/*CommandType type = CT_SCRIPT_BLOCK;
 	std::cout << type << std::endl;*/
 	
 	/*Variable* variable = new Variable(new ObjectBool(true));
-	variable->trace();
+	variable->dump();
 	delete variable->value;
 	delete variable;*/
 	

@@ -13,8 +13,8 @@ ObjectBool::ObjectBool(bool value) {
 	this->value = value;
 }
 
-void ObjectBool::trace() {
-	printf("[ObjectBool value=%d]", this->value);
+void ObjectBool::dump(std::ostringstream &stream) {
+	stream << "Bool(" << this->value << ")" << std::endl;
 }
 
 ObjectBool::~ObjectBool() {}
