@@ -124,7 +124,7 @@ Variable* getVariableOrCrash(Object* object) {
 }
 
 void setIntVariable(Variable* variable, int value) {
-	if (value == nullptr) {
+	if (variable == nullptr) {
 		throw std::runtime_error("ScriptUtils::setIntVariable => variable is null!");
 	}
 	Object* object = variable->value;
@@ -138,7 +138,7 @@ void setIntVariable(Variable* variable, int value) {
 }
 
 void setBoolVariable(Variable* variable, bool value) {
-	if (value == nullptr) {
+	if (variable == nullptr) {
 		throw std::runtime_error("ScriptUtils::setBoolVariable => variable is null!");
 	}
 	Object* object = variable->value;

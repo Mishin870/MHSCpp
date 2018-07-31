@@ -10,6 +10,9 @@
 #include "../stream/Stream.h"
 #include "../commands/LocalFunction.h"
 
+class ScriptBlock;
+class LocalFunction;
+
 class Engine {
 	public:
 		Engine();

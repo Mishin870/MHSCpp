@@ -5,11 +5,11 @@
 #ifndef MHSCPP_LOCALFUNCTION_H
 #define MHSCPP_LOCALFUNCTION_H
 
-
-#include "ScriptBlock.h"
+#include "ICommand.h"
 #include "../stream/Stream.h"
 
-class ScriptBlock;
+class Engine;
+class ICommand;
 
 class LocalFunction {
 	public:
@@ -20,7 +20,7 @@ class LocalFunction {
 		
 	private:
 		unsigned int name;
-		ScriptBlock* code;
+		ICommand* code;
 		unsigned int* args;
 		unsigned int argsCount;
 };

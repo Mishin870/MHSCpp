@@ -8,9 +8,8 @@
 
 #include "ICommand.h"
 #include "LocalFunction.h"
-
-class LocalFunction;
-class Stream;
+#include "ComamndType.h"
+#include "../objects/Object.h"
 
 class ScriptBlock : public ICommand {
 	public:

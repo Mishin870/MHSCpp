@@ -10,7 +10,6 @@
 #include "../commands/ICommand.h"
 #include "../commands/ScriptBlock.h"
 
-ScriptBlock* loadScript(Stream* stream);
 ICommand* loadCommand(Stream* stream);
 ICommand** loadBlock(Stream* stream, unsigned int &count);
 

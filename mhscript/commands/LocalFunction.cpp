@@ -14,7 +14,7 @@ LocalFunction::LocalFunction(Stream *stream) {
 	if (block->getType() != CT_SCRIPT_BLOCK) {
 		throw std::runtime_error("Local function block must have type SCRIPT_BLOCK!");
 	}
-	this->code = dynamic_cast<ScriptBlock*>(block);
+	this->code = block;
 	
 	this->argsCount = stream->readInt();
 	unsigned int i;

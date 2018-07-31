@@ -20,6 +20,7 @@
 #include "../commands/defs/CmdUnary.h"
 #include "../commands/defs/CmdVariable.h"
 #include "../commands/defs/CmdWhile.h"
+#include "../commands/defs/CmdGlobalFunction.h"
 
 ICommand* loadCommand(Stream* stream) {
 	CommandType type = static_cast<CommandType>(stream->readByte());
@@ -56,6 +57,8 @@ ICommand* loadCommand(Stream* stream) {
 			return new CmdVariable(stream);
 		case CT_WHILE:
 			return new CmdWhile(stream);
+		case CT_GLOBAL_FUNCTION:
+			return new CmdGlobalFunction(stream);
 		default:
 			throw std::runtime_error("Not supported command type in ScriptLoader::loadCommand!");
 	}

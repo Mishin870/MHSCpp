@@ -5,7 +5,7 @@
 #ifndef MHSCPP_FILESTREAM_H
 #define MHSCPP_FILESTREAM_H
 
-
+#include <fstream>
 #include "Stream.h"
 
 class FileStream : public Stream {

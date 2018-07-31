@@ -10,6 +10,8 @@
 #include "../engine/Engine.h"
 #include "ComamndType.h"
 
+class Engine;
+
 class ICommand {
 	public:
 		virtual Object* execute(Engine* engine) = 0;

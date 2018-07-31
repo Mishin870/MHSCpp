@@ -10,8 +10,8 @@
 #include "../../objects/ObjectInt.h"
 
 CmdUnary::CmdUnary(Stream *stream) {
-	this->operation = static_cast<LexemKind>(stream->readByte());
 	this->command = loadCommand(stream);
+	this->operation = static_cast<LexemKind>(stream->readByte());
 }
 
 CmdUnary::~CmdUnary() {
