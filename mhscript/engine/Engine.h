@@ -6,8 +6,17 @@
 #define MHSCPP_ENGINE_H
 
 
-class Engine {
+#include "Variable.h"
 
+class Engine {
+	public:
+		Engine(unsigned int variablesCount);
+		~Engine();
+		
+		Variable* getVariable(unsigned int variableName);
+	private:
+		unsigned int variablesCount;
+		Variable** variables;
 };
 
 

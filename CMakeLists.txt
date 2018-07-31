@@ -60,4 +60,4 @@ add_executable(MHSCpp
 		mhscript/commands/defs/CmdNumeric.h
 		mhscript/commands/defs/CmdBool.cpp
 		mhscript/commands/defs/CmdBool.h
-		mhscript/commands/defs/CmdMath.cpp mhscript/commands/defs/CmdMath.h)
+		mhscript/commands/defs/CmdMath.cpp mhscript/commands/defs/CmdMath.h mhscript/commands/defs/CmdVariable.cpp mhscript/commands/defs/CmdVariable.h)
