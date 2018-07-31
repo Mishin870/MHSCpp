@@ -24,7 +24,7 @@ enum LexemKind : unsigned char {
 	IDENTIFIER = 33,
 	NUMBER = 34,
 	STRING = 35, STRING_VARIABLED = 36,
-}
+};
 
 
 #endif //MHSCPP_LEXEMKIND_H
