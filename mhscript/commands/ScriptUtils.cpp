@@ -64,3 +64,15 @@ int getInt(Object* object) {
 		throw std::runtime_error("ScriptUtils::getInt => wrong type!");
 	}
 }
+
+bool executeBool(ICommand* command, Engine* engine) {
+	Object* tmp = command->execute(engine);
+	bool result = getBoolOrCrash(tmp);
+	delete tmp;
+	return result;
+}
+
+void executeVoid(ICommand* command, Engine* engine) {
+	Object* tmp = command->execute(engine);
+	delete tmp;
+}
