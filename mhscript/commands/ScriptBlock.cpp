@@ -6,17 +6,10 @@
 #include "../engine/ScriptLoader.h"
 #include "ScriptUtils.h"
 
-ScriptBlock::ScriptBlock(unsigned int commandsCount, ICommand** commands, unsigned int functionsCount, LocalFunction** functions) {
-	this->commands = commands;
-	this->commandsCount = commandsCount;
-	this->functions = functions;
-	this->functionsCount = functionsCount;
-}
-
 ScriptBlock::ScriptBlock(Stream *stream) {
 	this->commands = loadBlock(stream, this->commandsCount);
-	bool isRoot = stream->readByte() == 1;
-	if (isRoot) {
+	this->isRoot = stream->readByte() == 1;
+	if (this->isRoot) {
 		this->functionsCount = stream->readInt();
 		this->functions = new LocalFunction*[this->functionsCount];
 		unsigned int i;
@@ -27,6 +20,19 @@ ScriptBlock::ScriptBlock(Stream *stream) {
 		this->functionsCount = 0;
 		this->functions = nullptr;
 	}
+}
+
+ScriptBlock::~ScriptBlock() {
+	unsigned int i;
+	for (i = 0; i < this->commandsCount; i++) {
+		delete this->commands[i];
+	}
+	delete[] this->commands;
+	
+	for (i = 0; i < this->functionsCount; i++) {
+		delete this->functions[i];
+	}
+	delete[] this->functions;
 }
 
 Object *ScriptBlock::execute(Engine *engine) {

@@ -14,8 +14,9 @@ class ScriptBlock;
 class LocalFunction {
 	public:
 		explicit LocalFunction(Stream* stream);
-		LocalFunction(unsigned int name, ScriptBlock* code, unsigned int argsCount, unsigned int* args);
-	
+		~LocalFunction();
+		Object* execute(Engine* engine);
+		
 	private:
 		unsigned int name;
 		ScriptBlock* code;

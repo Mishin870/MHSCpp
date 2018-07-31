@@ -5,13 +5,7 @@
 #include <stdexcept>
 #include "LocalFunction.h"
 #include "../engine/ScriptLoader.h"
-
-LocalFunction::LocalFunction(unsigned int name, ScriptBlock *code, unsigned int argsCount, unsigned int *args) {
-	this->name = name;
-	this->code = code;
-	this->argsCount = argsCount;
-	this->args = args;
-}
+#include "ScriptException.h"
 
 LocalFunction::LocalFunction(Stream *stream) {
 	this->name = stream->readInt();
@@ -28,4 +22,22 @@ LocalFunction::LocalFunction(Stream *stream) {
 	for (i = 0; i < this->argsCount; i++) {
 		this->args[i] = stream->readInt();
 	}
+}
+
+LocalFunction::~LocalFunction() {
+	delete[] this->args;
+	delete this->code;
+}
+
+Object *LocalFunction::execute(Engine *engine) {
+	try {
+		this->code->execute(engine);
+	} catch (ScriptException se) {
+		if (se.getType() == ET_RETURN) {
+			return se.getData();
+		} else {
+			throw std::runtime_error("LocalFunction::execute => unknown type of ScriptException!");
+		}
+	}
+	return nullptr;
 }
