@@ -36,4 +36,4 @@ add_executable(MHSCpp
 		mhscript/commands/ScriptException.cpp
 		mhscript/commands/ScriptException.h
 		mhscript/commands/ScriptExceptionType.h
-		mhscript/commands/defs/CmdReturn.cpp mhscript/commands/defs/CmdReturn.h mhscript/commands/defs/CmdElse.cpp mhscript/commands/defs/CmdElse.h mhscript/commands/defs/CmdElseIf.cpp mhscript/commands/defs/CmdElseIf.h mhscript/commands/defs/CmdIf.cpp mhscript/commands/defs/CmdIf.h mhscript/commands/defs/CmdFor.cpp mhscript/commands/defs/CmdFor.h mhscript/commands/defs/CmdWhile.cpp mhscript/commands/defs/CmdWhile.h)
+		mhscript/commands/defs/CmdReturn.cpp mhscript/commands/defs/CmdReturn.h mhscript/commands/defs/CmdElse.cpp mhscript/commands/defs/CmdElse.h mhscript/commands/defs/CmdElseIf.cpp mhscript/commands/defs/CmdElseIf.h mhscript/commands/defs/CmdIf.cpp mhscript/commands/defs/CmdIf.h mhscript/commands/defs/CmdFor.cpp mhscript/commands/defs/CmdFor.h mhscript/commands/defs/CmdWhile.cpp mhscript/commands/defs/CmdWhile.h mhscript/commands/defs/CmdEmpty.cpp mhscript/commands/defs/CmdEmpty.h)
