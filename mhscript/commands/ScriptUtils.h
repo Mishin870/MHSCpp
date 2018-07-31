@@ -15,6 +15,7 @@ bool getBoolOrCrash(Object* object);
 int getIntOrCrash(Object* object);
 bool getBool(Object* object);
 int getInt(Object* object);
+Object* getPureObject(Object* object);
 
 bool executeBool(ICommand* command, Engine* engine);
 int executeInt(ICommand* command, Engine* engine);

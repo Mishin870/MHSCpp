@@ -64,4 +64,7 @@ add_executable(MHSCpp
 		mhscript/commands/defs/CmdMath.h
 		mhscript/commands/defs/CmdVariable.cpp
 		mhscript/commands/defs/CmdVariable.h
-		mhscript/commands/defs/CmdGlobalFunction.cpp mhscript/commands/defs/CmdGlobalFunction.h)
+		mhscript/commands/defs/CmdGlobalFunction.cpp
+		mhscript/commands/defs/CmdGlobalFunction.h
+		mhscript/engine/IGlobalFunction.h
+		)

@@ -14,7 +14,7 @@ Engine::Engine() {
 	this->currentScript = nullptr;
 }
 
-ScriptBlock* Engine::loadCurrentScript(Stream *stream) {
+void Engine::loadCurrentScript(Stream *stream) {
 	if (this->currentScript != nullptr) {
 		dispose();
 	}
@@ -57,7 +57,10 @@ ScriptBlock* Engine::loadCurrentScript(Stream *stream) {
 		throw std::runtime_error("Main script block must have type CT_SCRIPT_BLOCK!");
 	}
 	this->currentScript = dynamic_cast<ScriptBlock*>(script);
-	return this->currentScript;
+}
+
+void Engine::executeCurrentScript() {
+	this->currentScript->execute(this);
 }
 
 void Engine::dispose() {
@@ -84,5 +87,23 @@ Variable *Engine::getVariable(unsigned int variableName) {
 }
 
 void Engine::setLocalFunction(unsigned int localFunctionName, LocalFunction* localFunction) {
+	if (localFunctionName >= this->localFunctionsCount) {
+		throw std::runtime_error("Engine::setLocalFunction => out of range!");
+	}
 	this->localFunctions[localFunctionName] = localFunction;
+}
+
+void Engine::setGlobalFunction(unsigned int globalFunctionName, IGlobalFunction *globalFunction) {
+	if (globalFunctionName >= this->localFunctionsCount) {
+		throw std::runtime_error("Engine::setLocalFunction => out of range!");
+	}
+	this->globalFunctions[globalFunctionName] = globalFunction;
+}
+
+Object* Engine::executeLocalFunction(unsigned int functionName, Object** args, unsigned int argc) {
+
+}
+
+Object* Engine::executeGlobalFunction(unsigned int functionName, Object** args, unsigned int argc) {
+	this->globalFunctions[functionName]->execute(args, argc);
 }

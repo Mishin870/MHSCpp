@@ -150,3 +150,16 @@ void setBoolVariable(Variable* variable, bool value) {
 		throw std::runtime_error("ScriptUtils::setBoolVariable => wrong type!");
 	}
 }
+
+Object* getPureObject(Object* object) {
+	if (object == nullptr) {
+		throw std::runtime_error("ScriptUtils::getPureObject => object is null!");
+	}
+	ObjectType type = object->getType();
+	if (type == OT_VARIABLE) {
+		auto *objectVariable = dynamic_cast<Variable *>(object);
+		return objectVariable->value;
+	} else {
+		return object;
+	}
+}

@@ -21,8 +21,8 @@ int main() {
 	Stream* stream = new FileStream("test.script");
 	Engine* engine = new Engine();
 	//ICommand* script = new ScriptBlock(stream);
-	ScriptBlock* script = engine->loadCurrentScript(stream);
-	script->execute(engine);
+	engine->loadCurrentScript(stream);
+	engine->executeCurrentScript();
 	
 	delete engine;
 	delete stream;
