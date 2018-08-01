@@ -5,6 +5,7 @@
 #ifndef MHSCPP_FILESTREAM_H
 #define MHSCPP_FILESTREAM_H
 
+#include <string>
 #include <fstream>
 #include "Stream.h"
 
@@ -15,6 +16,7 @@ class FileStream : public Stream {
 		
 		unsigned int readInt() override;
 		unsigned char readByte() override;
+		void readString(std::string& to) override;
 		void skip(unsigned int count) override;
 	
 	private:

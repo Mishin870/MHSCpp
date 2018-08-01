@@ -3,6 +3,7 @@
 //
 
 #include <stdexcept>
+#include <iostream>
 #include "Engine.h"
 #include "ScriptLoader.h"
 
@@ -27,21 +28,27 @@ void Engine::loadCurrentScript(Stream *stream) {
 	unsigned int count, len, i;
 	count = stream->readInt();
 	this->globalFunctionsCount = count;
+	this->globalFunctionNames = new std::string[this->globalFunctionsCount];
 	for (i = 0; i < count; i++) {
 		len = stream->readInt();
-		stream->skip(len);
+		this->globalFunctionNames[i].resize(len);
+		stream->readString(this->globalFunctionNames[i]);
 	}
 	count = stream->readInt();
 	this->localFunctionsCount = count;
+	this->localFunctionNames = new std::string[this->localFunctionsCount];
 	for (i = 0; i < count; i++) {
 		len = stream->readInt();
-		stream->skip(len);
+		this->localFunctionNames[i].resize(len);
+		stream->readString(this->localFunctionNames[i]);
 	}
 	count = stream->readInt();
 	this->variablesCount = count;
+	this->variableNames = new std::string[this->variablesCount];
 	for (i = 0; i < count; i++) {
 		len = stream->readInt();
-		stream->skip(len);
+		this->variableNames[i].resize(len);
+		stream->readString(this->variableNames[i]);
 	}
 	
 	this->globalFunctions = new IGlobalFunction*[this->globalFunctionsCount];
@@ -72,15 +79,23 @@ void Engine::dispose() {
 	unsigned int i;
 	for (i = 0; i < this->variablesCount; i++) {
 		delete this->variables[i];
+		//delete this->variableNames[i];
 	}
 	delete[] this->variables;
+	delete[] this->variableNames;
 	
 	for (i = 0; i < this->globalFunctionsCount; i++) {
 		delete this->globalFunctions[i];
+		//delete this->globalFunctionNames[i];
 	}
 	delete[] this->globalFunctions;
+	delete[] this->globalFunctionNames;
 	
+	/*for (i = 0; i < this->localFunctionsCount; i++) {
+		delete this->localFunctionNames[i];
+	}*/
 	delete[] this->localFunctions;
+	delete[] this->localFunctionNames;
 }
 
 Engine::~Engine() {
@@ -116,4 +131,34 @@ Object* Engine::executeGlobalFunction(unsigned int functionName, Object** args, 
 		throw std::runtime_error("Engine::executeGlobalFunction => out of range!");
 	}
 	this->globalFunctions[functionName]->execute(args, argc);
+}
+
+unsigned int Engine::getGlobalFunctionNameByString(std::string name) {
+	unsigned int i;
+	for (i = 0; i < this->globalFunctionsCount; i++) {
+		if (this->globalFunctionNames[i] == name) {
+			return i;
+		}
+	}
+	return CANT_FIND;
+}
+
+unsigned int Engine::getLocalFunctionNameByString(std::string name) {
+	unsigned int i;
+	for (i = 0; i < this->localFunctionsCount; i++) {
+		if (this->localFunctionNames[i] == name) {
+			return i;
+		}
+	}
+	return CANT_FIND;
+}
+
+unsigned int Engine::getVariableByNameString(std::string name) {
+	unsigned int i;
+	for (i = 0; i < this->variablesCount; i++) {
+		if (this->variableNames[i] == name) {
+			return i;
+		}
+	}
+	return CANT_FIND;
 }

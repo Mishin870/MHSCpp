@@ -1,7 +1,5 @@
 #include <iostream>
 #include "mhscript/engine/Engine.h"
-#include "mhscript/commands/ScriptBlock.h"
-#include "mhscript/stream/Stream.h"
 #include "mhscript/stream/FileStream.h"
 
 class TestFunction : public IGlobalFunction {
@@ -37,7 +35,11 @@ int main() {
 	Engine* engine = new Engine();
 	//ICommand* script = new ScriptBlock(stream);
 	engine->loadCurrentScript(stream);
-	engine->setGlobalFunction(0, new TestFunction());
+	unsigned int testFunctionName = engine->getGlobalFunctionNameByString("test2");
+	if (testFunctionName == Engine::CANT_FIND) {
+		//do something
+	}
+	engine->setGlobalFunction(testFunctionName, new TestFunction());
 	
 	
 	engine->executeCurrentScript();

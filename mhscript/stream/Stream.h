@@ -5,6 +5,8 @@
 #ifndef MHSCPP_STREAM_H
 #define MHSCPP_STREAM_H
 
+#include <string>
+
 /**
  * Описание потока, с которым умеет оперировать движок.
  * См. также: FileStream
@@ -13,6 +15,7 @@ class Stream {
 	public:
 		virtual unsigned int readInt() = 0;
 		virtual unsigned char readByte() = 0;
+		virtual void readString(std::string& to) = 0;
 		virtual void skip(unsigned int count) = 0;
 };
 

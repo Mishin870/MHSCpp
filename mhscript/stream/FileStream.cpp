@@ -34,3 +34,7 @@ void FileStream::skip(unsigned int count) {
 	fseek(this->file, (long) count, SEEK_CUR);
 }
 
+void FileStream::readString(std::string& to) {
+	fread(&(to[0]), 1, to.length(), this->file);
+}
+

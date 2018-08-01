@@ -19,6 +19,7 @@ class Engine {
 		Engine();
 		~Engine();
 		
+		static const unsigned int CANT_FIND = -1;
 		Variable* getVariable(unsigned int variableName);
 		void setLocalFunction(unsigned int localFunctionName, LocalFunction* localFunction);
 		void setGlobalFunction(unsigned int globalFunctionName, IGlobalFunction* globalFunction);
@@ -26,18 +27,24 @@ class Engine {
 		void executeCurrentScript();
 		Object* executeLocalFunction(unsigned int functionName, Object** args, unsigned int argc);
 		Object* executeGlobalFunction(unsigned int functionName, Object** args, unsigned int argc);
+		unsigned int getGlobalFunctionNameByString(std::string name);
+		unsigned int getLocalFunctionNameByString(std::string name);
+		unsigned int getVariableByNameString(std::string name);
 	private:
 		ScriptBlock* currentScript;
 		void dispose();
 		
 		unsigned int variablesCount;
 		Variable** variables;
+		std::string* variableNames;
 		
 		unsigned int globalFunctionsCount;
 		IGlobalFunction** globalFunctions;
+		std::string* globalFunctionNames;
 		
 		unsigned int localFunctionsCount;
 		LocalFunction** localFunctions;
+		std::string* localFunctionNames;
 };
 
 

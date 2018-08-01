@@ -14,3 +14,7 @@ unsigned char DummyStream::readByte() {
 }
 
 void DummyStream::skip(unsigned int count) {}
+
+void DummyStream::readString(std::string& to) {
+	skip(to.length());
+}
