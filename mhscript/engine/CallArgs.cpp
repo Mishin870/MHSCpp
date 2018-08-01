@@ -17,5 +17,5 @@ CallArgs::~CallArgs() {
 }
 
 void CallArgs::setVariable(unsigned int variableName, Variable *variable) {
-	this->variables.insert(std::pair<unsigned char, Variable*>(variableName, variable));
+	this->variables.insert(std::pair<unsigned int, Variable*>(variableName, variable));
 }

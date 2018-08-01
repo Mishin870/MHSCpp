@@ -14,7 +14,7 @@ ObjectInt::ObjectInt(int value) {
 }
 
 void ObjectInt::dump(std::ostringstream &stream) {
-	stream << "Int(" << this->value << ")" << std::endl;
+	stream << "Int(" << this->value << ")";
 }
 
 ObjectInt::~ObjectInt() {}

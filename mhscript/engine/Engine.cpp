@@ -13,6 +13,7 @@ Engine::Engine() {
 	this->localFunctions = nullptr;
 	this->localFunctionsCount = 0;
 	this->currentScript = nullptr;
+	this->callStackPointer = 0;
 }
 
 void Engine::loadCurrentScript(Stream *stream) {
@@ -105,7 +106,12 @@ Engine::~Engine() {
 }
 
 Variable *Engine::getVariable(unsigned int variableName) {
-	return this->variables[variableName];
+	unsigned int index = callStackPointer - 1;
+	if (callStackPointer > 0 && callStack[index]->functionType == LOCAL && callStack[index]->variables.count(variableName) > 0) {
+		return callStack[index]->variables[variableName];
+	} else {
+		return this->variables[variableName];
+	}
 }
 
 void Engine::setLocalFunction(unsigned int localFunctionName, LocalFunction* localFunction) {
@@ -123,14 +129,40 @@ void Engine::setGlobalFunction(unsigned int globalFunctionName, IGlobalFunction 
 }
 
 Object* Engine::executeLocalFunction(unsigned int functionName, Object** args, unsigned int argc) {
-
+	if (functionName < 0 || functionName >= this->localFunctionsCount) {
+		throw std::runtime_error("Engine::executeLocalFunction => out of range!");
+	}
+	CallArgs* callArgs = new CallArgs(LOCAL);
+	LocalFunction* localFunction = this->localFunctions[functionName];
+	unsigned int i;
+	for (i = 0; i < localFunction->argsCount; i++) {
+		Variable* variable = new Variable(args[i]);
+		callArgs->setVariable(localFunction->args[i], variable);
+	}
+	addToCallStack(callArgs);
+	Object* result = localFunction->execute(this);
+	removeFromCallStack();
+	delete[] args;
+	
+	return result;
 }
 
 Object* Engine::executeGlobalFunction(unsigned int functionName, Object** args, unsigned int argc) {
-	if (functionName < 0 || functionName >= this->localFunctionsCount) {
+	if (functionName < 0 || functionName >= this->globalFunctionsCount) {
 		throw std::runtime_error("Engine::executeGlobalFunction => out of range!");
 	}
-	this->globalFunctions[functionName]->execute(args, argc);
+	CallArgs* callArgs = new CallArgs(GLOBAL);
+	addToCallStack(callArgs);
+	Object* result = this->globalFunctions[functionName]->execute(args, argc);
+	removeFromCallStack();
+	
+	unsigned int i;
+	for (i = 0; i < argc; i++) {
+		delete args[i];
+	}
+	delete[] args;
+	
+	return result;
 }
 
 unsigned int Engine::getGlobalFunctionNameByString(std::string name) {
@@ -161,4 +193,18 @@ unsigned int Engine::getVariableByNameString(std::string name) {
 		}
 	}
 	return CANT_FIND;
+}
+
+void Engine::addToCallStack(CallArgs* args) {
+	callStack.push_back(args);
+	callStackPointer++;
+}
+
+void Engine::removeFromCallStack() {
+	if (callStackPointer == 0) {
+		throw std::runtime_error("Engine::removeFromCallStack => call stack is empty!");
+	}
+	delete callStack[callStackPointer - 1];
+	callStack.pop_back();
+	callStackPointer--;
 }

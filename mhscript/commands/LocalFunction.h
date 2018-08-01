@@ -17,12 +17,12 @@ class LocalFunction {
 		~LocalFunction();
 		Object* execute(Engine* engine);
 		unsigned int getName();
+		unsigned int* args;
+		unsigned int argsCount;
 		
 	private:
 		unsigned int name;
 		ICommand* code;
-		unsigned int* args;
-		unsigned int argsCount;
 };
 
 

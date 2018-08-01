@@ -6,10 +6,12 @@
 #define MHSCPP_ENGINE_H
 
 
+#include <vector>
 #include "Variable.h"
 #include "../stream/Stream.h"
 #include "../commands/LocalFunction.h"
 #include "IGlobalFunction.h"
+#include "CallArgs.h"
 
 class ScriptBlock;
 class LocalFunction;
@@ -31,6 +33,12 @@ class Engine {
 		unsigned int getLocalFunctionNameByString(std::string name);
 		unsigned int getVariableByNameString(std::string name);
 	private:
+		void addToCallStack(CallArgs* args);
+		void removeFromCallStack();
+		
+		std::vector<CallArgs*> callStack;
+		unsigned int callStackPointer;
+		
 		ScriptBlock* currentScript;
 		void dispose();
 		

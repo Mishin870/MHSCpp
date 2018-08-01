@@ -14,7 +14,7 @@ ObjectBool::ObjectBool(bool value) {
 }
 
 void ObjectBool::dump(std::ostringstream &stream) {
-	stream << "Bool(" << this->value << ")" << std::endl;
+	stream << "Bool(" << this->value << ")";
 }
 
 ObjectBool::~ObjectBool() {}

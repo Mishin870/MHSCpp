@@ -6,7 +6,7 @@
 #define MHSCPP_FUNCTIONTYPE_H
 
 
-enum FunctionType : public unsigned char {
+enum FunctionType : unsigned char {
 	LOCAL, GLOBAL
 };
 
